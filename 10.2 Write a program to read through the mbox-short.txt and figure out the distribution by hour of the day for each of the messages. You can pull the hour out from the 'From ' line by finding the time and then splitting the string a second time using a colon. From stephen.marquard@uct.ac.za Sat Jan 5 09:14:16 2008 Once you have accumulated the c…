@@ -1,0 +1,22 @@
+name = input("Enter file:")
+if len(name) < 1 : name = "mbox-short.txt"
+handle = open(name)
+lst=list()
+lst1=[]
+for line in handle:
+    a=line.rstrip().split()
+    if line.startswith("From:"):continue
+    if line.startswith("From"):
+        lst.append(a[5])
+    else:
+        continue
+for hour in range(len(lst)):
+    a=lst[hour].split(':')
+    lst1.append(a[0])
+
+dic=dict()
+for i in lst1:
+    dic[i]=dic.get(i,0)+1
+
+for k,v in sorted(dic.items()):
+    print(k,v)
